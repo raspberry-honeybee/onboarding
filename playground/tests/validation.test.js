@@ -44,3 +44,27 @@ test("accepts zero", () => {
   const result = convert("temperature", 0, "C", "F");
   strictEqual(result, 32);
 });
+
+test("rejects unknown temperature unit", () => {
+  throws(
+    () => convert("temperature", 100, "X", "F"),
+    /unsupported/i,
+    "Should throw error for unknown temperature unit"
+  );
+});
+
+test("rejects unknown distance unit", () => {
+  throws(
+    () => convert("distance", 5, "km", "xyz"),
+    /unsupported/i,
+    "Should throw error for unknown distance unit"
+  );
+});
+
+test("rejects unknown weight unit", () => {
+  throws(
+    () => convert("weight", 10, "lb", "xyz"),
+    /unsupported/i,
+    "Should throw error for unknown weight unit"
+  );
+});
